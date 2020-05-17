@@ -22,7 +22,6 @@ protected:
 
     SWektor<STyp,SWymiar> operator - (const SWektor<STyp,SWymiar> &Odjemnik) const;
     SWektor<STyp,SWymiar> operator + (const SWektor<STyp,SWymiar> &Wek) const;
-    SWektor<STyp,SWymiar> operator = (const SWektor<STyp,SWymiar> &Wek) const;
     STyp operator * (const SWektor<STyp,SWymiar> &Wek) const;
     SWektor<STyp,SWymiar> operator * (double Mnoznik) const;
     SWektor<STyp,SWymiar> operator / (double Dzielnik) const;
@@ -36,15 +35,6 @@ SWektor<STyp,SWymiar>::SWektor()
   for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) (*this)[Ind]=0;
 }
 
-template <typename STyp, int SWymiar>
-SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator = (const SWektor<STyp,SWymiar> &Wek) const
-{
-  SWektor<STyp,SWymiar>  Wynik;
-  for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) Wynik[Ind]=0;
-
-  for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) Wynik[Ind] =  Wek[Ind];
-  return Wynik;
-}
 
 
 ///DODAWANIE WEKTOROW

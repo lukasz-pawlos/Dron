@@ -14,7 +14,7 @@ Dron() = delete;
 Dron(double bA,double bB, double bC);
 
 void Obrot(double stopnie) override;
-void Przesun(double odleglosc) override;
+void Przesun(double odleglosc,double stopnie) override;
 
 
 };

@@ -3,7 +3,6 @@
 
 #include "SWektor.hh"
 #include "rozmiar.h"
-#include "LZespolona.hh"
 #include <iostream>
 
 
@@ -96,15 +95,13 @@ void SMacierz<STyp,SWymiar>::Zeruj()
 template <typename STyp, int SWymiar>
 void SMacierz<STyp,SWymiar>::Jednostkowa()
 {
-    SWektor<STyp,SWymiar> ZERO;
-    for (int i = 0; i < SWymiar; ++i) ZERO[i]=0;
+    SWektor<STyp,SWymiar> ZERO(1,0,0);
+    SWektor<STyp,SWymiar> JEDEN(0,1,0);
+    SWektor<STyp,SWymiar> DWA(0,0,1);
 
-    for (int i = 0; i < SWymiar; ++i)
-    {
-        ZERO[i]=1;
-        (*this)[i] = ZERO;
-        ZERO[i]=0;
-    }
+        (*this)[0] = ZERO;
+        (*this)[1] = JEDEN;
+        (*this)[2] = DWA;
 
 }
 

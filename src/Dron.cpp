@@ -31,12 +31,9 @@ Orientacja = Orientacja * Obrot;
 
 }
 
-void Dron::Przesun(double odleglosc) {
-SWektor<double,3> przesuniecie;
+void Dron::Przesun(double odleglosc, double stopnie) {
+SWektor<double,3> przesuniecie(0,odleglosc*cos(stopnie*M_PI/180),odleglosc*sin(stopnie*M_PI/180));
 
-przesuniecie[0]=0;
-przesuniecie[1]=odleglosc;
-przesuniecie[2]=0;
 
 
 (*this).Orient_wektor(przesuniecie);

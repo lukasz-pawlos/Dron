@@ -4,14 +4,14 @@
 #include "Macierz.hh"
 #include "SWektor.hh"
 #include <iostream>
+#include <cmath>
 
-#define PI 3.141592653589
 
 class MacierzOb : public SMacierz<double,3>{
 public:
 
 MacierzOb (const SMacierz <double,3> & M);
-MacierzOb (){};
+MacierzOb ();
 
 MacierzOb (double stopnie);
 };

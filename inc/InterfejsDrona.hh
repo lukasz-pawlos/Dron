@@ -9,12 +9,12 @@
 class InterfejsDrona {
 protected:
 
-InterfejsDrona();
+InterfejsDrona(){};
 
 public:
 
 virtual void Obrot(double stopnie) = 0;
-virtual void Przesun(double odleglosc) =0;
+virtual void Przesun(double odleglosc,double stopnie) =0;
 };
 
 

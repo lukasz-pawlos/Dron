@@ -27,16 +27,25 @@ if(abs((*this).det() - 1) > epsilon){
 
 }
 
+MacierzOb::MacierzOb(){
+    SWektor<double,3> ZERO(1,0,0);
+    SWektor<double,3> JEDEN(0,1,0);
+    SWektor<double,3> DWA(0,0,1);
 
+        (*this)[0] = ZERO;
+        (*this)[1] = JEDEN;
+        (*this)[2] = DWA;
+
+}
 
 
 MacierzOb::MacierzOb(double stopnie){
 
-    tab[0][0] = cos(stopnie * PI/180);
-    tab[0][1] = -sin(stopnie * PI/180);
+    tab[0][0] = cos(stopnie * M_PI/180);
+    tab[0][1] = -sin(stopnie * M_PI/180);
     tab[0][2] = 0;
-    tab[1][0] = sin(stopnie * PI/180);
-    tab[1][1] = cos(stopnie * PI/180);
+    tab[1][0] = sin(stopnie * M_PI/180);
+    tab[1][1] = cos(stopnie * M_PI/180);
     tab[1][2] = 0;
     tab[2][0] = 0;
     tab[2][1] = 0;

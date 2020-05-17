@@ -21,7 +21,7 @@ protected:
     Bryla() {};
 public:
 
-virtual unsigned int Rysuj(std::shared_ptr<drawNS::Draw3DAPI> api) const =0;
+virtual unsigned int Rysuj(std::shared_ptr<drawNS::Draw3DAPI> api) const = 0;
 virtual void ustaw_pozycje(const SWektor<double,3> &Wektor) = 0;
 virtual void ustaw_orientacje(const MacierzOb &Macierz) =0;
 };
