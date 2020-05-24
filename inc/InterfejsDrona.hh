@@ -15,6 +15,8 @@ public:
 
 virtual void Obrot(double stopnie) = 0;
 virtual void Przesun(double odleglosc,double stopnie) =0;
+virtual void Plyn(double odleglosc,double stopnie) =0;
+virtual void ObrotAnimacja(double stopnie) = 0;
 };
 
 

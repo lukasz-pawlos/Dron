@@ -51,3 +51,18 @@ MacierzOb::MacierzOb(double stopnie){
     tab[2][1] = 0;
     tab[2][2] = 1;
 }
+
+MacierzOb::OSX(double stopnie)
+{
+
+    tab[0][0] = 1;
+    tab[0][1] = 0;
+    tab[0][2] = 0;
+    tab[1][0] = 0;
+    tab[1][1] = cos(stopnie * M_PI/180);
+    tab[1][2] = -sin(stopnie * M_PI/180);
+    tab[2][0] = 0;
+    tab[2][1] = sin(stopnie * M_PI/180);
+    tab[2][2] = cos(stopnie * M_PI/180);
+
+}

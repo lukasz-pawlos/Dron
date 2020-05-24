@@ -14,6 +14,7 @@ MacierzOb (const SMacierz <double,3> & M);
 MacierzOb ();
 
 MacierzOb (double stopnie);
+MacierzOb OSX(double stopnie);
 };
 
 #endif

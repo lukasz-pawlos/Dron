@@ -18,12 +18,16 @@ protected:
     SWektor<double,3> Punkt0;
     MacierzOb Orientacja;
 
+  //  std::shared_ptr<drawNS::Draw3DAPI> api;
+
     Bryla() {};
 public:
 
 virtual unsigned int Rysuj(std::shared_ptr<drawNS::Draw3DAPI> api) const = 0;
 virtual void ustaw_pozycje(const SWektor<double,3> &Wektor) = 0;
 virtual void ustaw_orientacje(const MacierzOb &Macierz) =0;
+
+//void set_api(std::share_ptr<drawNS::Draw3DAPI> API) {api = API; }
 };
 
 
