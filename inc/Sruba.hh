@@ -3,6 +3,7 @@
 
 #include "GraniastoslupSzes.hh"
 #include "SWektor.hh"
+#include "Macierz.hh"
 
 class Sruba : public GraniastoslupSzes {
 protected:
@@ -21,13 +22,18 @@ Sruba(double Abok,double Hbok);
 
 void Ustaw (double Abok,double Hbok);
 
+void ustaw_pozycje(const SWektor<double,3> &Wektor) override;
+
+void ustaw_orientacje(const MacierzOb &Macierz) override;
+
 void Przesun(double odleglosc, double stopnie);
 
 void Obracaj();
 
 void ObrotDR (SWektor <double,3> Ods, MacierzOb Obrot, MacierzOb Ort_Drona);
 
-unsigned int Rysuj(std::shared_ptr<drawNS::Draw3DAPI> api):
+
+void Rysuj();
 
 };
 

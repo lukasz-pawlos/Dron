@@ -10,28 +10,25 @@
 class Dron: public Prostopadloscian, public InterfejsDrona{
 protected:
 
+Dron() = delete;
 Sruba Prawa;
 Sruba Lewa;
 
 SWektor<double,3> PozycjaPrawa;
 SWektor<double,3> PozycjaLewa;
 
-Dron() = delete;
-void Przesun(double odleglosc,double stopnie) override;
-void Obrot(double stopnie);
 
 public:
-
-
 Dron(double bA,double bB, double bC);
 
-void ustawAPI(std::share_ptr<drawNS::Draw3DAPI> API);
+void ustaw_api(std::shared_ptr<drawNS::Draw3DAPI> API);
 
-void Rysuj();
 
+void Rysuj() override;
+void Obrot(double stopnie) override;
+void Przesun(double odleglosc,double stopnie) override;
 void Plyn(double odleglosc,double stopnie) override;
-void ObrotAnimacja(double stopnie) override;
-
+void ObrotA(double stopnie) override;
 
 
 };
