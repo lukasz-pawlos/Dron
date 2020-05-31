@@ -1,13 +1,13 @@
 CPPFLAGS= -c -g -Wall -pedantic -std=c++17 -iquote inc
 OBJ=./obj
 
-__start__: ${OBJ} ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o  ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSze.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o ${OBJ}/Dno.o ${OBJ}/Tafla.o
-	g++ -o example.out ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o  ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o ${OBJ}/Dno.o ${OBJ}/Tafla.o -lpthread
+__start__: ${OBJ} ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o
+	g++ -o example.out ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o -lpthread
 
-${OBJ}:	
+${OBJ}:
 	mkdir ${OBJ}
 
-${OBJ}/example.o: src/example.cpp inc/Dr3D_gnuplot_api.hh inc/SWektor.hh inc/Macierz.hh inc/MacierzOb.hh inc/Prostopadloscian.hh inc/Dron.hh inc/GraniastoslupSzes.hh inc/Sruba.hh inc/Powierzchnia.hh inc/Dno.hh inc/Tafla.hh
+${OBJ}/example.o: src/example.cpp inc/Dr3D_gnuplot_api.hh inc/SWektor.hh inc/Macierz.hh inc/MacierzOb.hh inc/Prostopadloscian.hh inc/Dron.hh inc/GraniastoslupSzes.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/example.o src/example.cpp
 
 ${OBJ}/Dr3D_gnuplot_api.o: src/Dr3D_gnuplot_api.cpp inc/Dr3D_gnuplot_api.hh
@@ -26,7 +26,7 @@ ${OBJ}/Prostopadloscian.o: src/Prostopadloscian.cpp inc/Prostopadloscian.hh inc/
 inc/Prostopadloscian.hh: inc/Bryla.hh
 	touch inc/Prostopadloscian.hh
 
-${OBJ}/Dron.o: src/Dron.cpp inc/Dron.hh inc/InterfejsDrona.hh inc/Prostopadloscian.hh inc/Sruba.hh
+${OBJ}/Dron.o: src/Dron.cpp inc/Dron.hh inc/InterfejsDrona.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Dron.o src/Dron.cpp
 
 inc/Dron.hh: inc/InterfejsDrona.hh
@@ -41,17 +41,8 @@ inc/GraniastoslupSze.hh: inc/Bryla.hh
 ${OBJ}/Sruba.o: src/Sruba.cpp inc/Sruba.hh  inc/GraniastoslupSzes.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Sruba.o src/Sruba.cpp
 
-${OBJ}/Powierzchnia.o: src/Powierzchnia.cpp inc/Powierzchnia.hh inc/Obiekt3D.hh
+${OBJ}/Powierzchnia.o: src/Powierzchnia.cpp inc/Powierzchnia.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Powierzchnia.o src/Powierzchnia.cpp
-
-inc/Powierzchnia.hh: inc/Bryla.hh
-	touch inc/Powierzchnia.hh
-
-${OBJ}/Dno.o: src/Dno.cpp inc/Dno.hh  inc/Powierzchnia.hh
-	g++ ${CPPFLAGS} -o ${OBJ}/Dno.o src/Dno.cpp
-
-${OBJ}/Tafla.o: src/Tafla.cpp inc/Tafla.hh  inc/Powierzchnia.hh
-	g++ ${CPPFLAGS} -o ${OBJ}/Tafla.o src/Tafla.cpp
 
 
 clear:
