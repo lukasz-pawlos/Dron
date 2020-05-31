@@ -15,7 +15,7 @@ if (Hbok < 0){
 }
 
 A = Abok;
-B = Hbok;
+H = Hbok;
 
 }
 
@@ -32,7 +32,7 @@ if (Hbok < 0){
 }
 
 A = Abok;
-B = Hbok;
+H = Hbok;
 
 }
 
@@ -40,14 +40,14 @@ B = Hbok;
 
 void Sruba::Przesun(double odleglosc, double stopnie) {
 
-SWektor<double,3> przesuniecie(0,odleglosc*cos(stopnie*M_PI/180),odleglosc*sin(stopnie*M_PI/180));
+SWektor<double,3> przesuniecie(odleglosc*cos(stopnie*M_PI/180),0,odleglosc*sin(stopnie*M_PI/180));
 (*this).Orient_wektor(przesuniecie);
-Srodek = Srodek * przesuniecie;
+Srodek = Srodek + przesuniecie;
 }
 
 void Sruba::ObrotDR(SWektor <double,3> Ods, MacierzOb Obrot, MacierzOb Ort_Drona) {
 
-Srodek = Srodek + (Ort_Drona * (-1 * Ods)) + ((Ort_Drona * Obrot) * Ods)
+Srodek = Srodek + (Ort_Drona * (Ods * (-1))) + ((Ort_Drona * Obrot) * Ods);
 Orientacja = Orientacja * Obrot;
 
 }
@@ -59,12 +59,31 @@ Rotacja = Rotacja *Krec;
 
 }
 
-unsigned int Sruba::Rysuj(std::shared_ptr<drawNS::Draw3DAPI> api) {
+
+void Sruba::ustaw_pozycje(const SWektor<double,3> &Wektor) {
+Srodek = Wektor;
+}
+
+void Sruba::ustaw_orientacje(const MacierzOb &Macierz) {
+Orientacja = Macierz;
+}
+
+
+void Sruba::Orient_wektor(SWektor<double, 3> &Wek)const {
+
+Wek = Rotacja * Wek;
+Wek = Orientacja * Wek;
+}
+
+void Sruba::Rysuj() {
 
 SWektor<double,3> tab[12];
 (*this).Wspolrzedne(tab);
 
-unsigned int tmp = api ->draw_polyhedron(vector<vector<Point3D> > {{
+if (ID != -1)
+api->erase_shape(ID);
+
+ID = api ->draw_polyhedron(vector<vector<Point3D> > {{
     drawNS::Point3D(tab[0][0],tab[0][1],tab[0][2]),drawNS::Point3D(tab[1][0],tab[1][1],tab[1][2]),drawNS::Point3D(tab[2][0],tab[2][1],tab[2][2]),
     drawNS::Point3D(tab[3][0],tab[3][1],tab[3][2]),drawNS::Point3D(tab[4][0],tab[4][1],tab[4][2]),drawNS::Point3D(tab[5][0],tab[5][1],tab[5][2])
     },{
@@ -73,7 +92,6 @@ unsigned int tmp = api ->draw_polyhedron(vector<vector<Point3D> > {{
     }
     }, "red");
 
-return tmp;
 }
 
 
@@ -81,7 +99,7 @@ void Sruba::Wspolrzedne(SWektor<double,3>* wsp)const {
 
 SWektor<double,3> przesX(H/2,0,0);
 SWektor<double,3> przesY(0,A,0);
-SWektor<double,3> przesY2(0,A/2,C);
+SWektor<double,3> przesY2(0,A/2,0);
 SWektor<double,3> przesZ(0,0,A*sqrt(3)/2);
 
 (*this).Orient_wektor(przesX);

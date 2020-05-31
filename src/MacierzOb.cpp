@@ -52,7 +52,8 @@ MacierzOb::MacierzOb(double stopnie){
     tab[2][2] = 1;
 }
 
-MacierzOb::OSX(double stopnie)
+
+MacierzOb MacierzOb::OSX(double stopnie)
 {
 
     tab[0][0] = 1;

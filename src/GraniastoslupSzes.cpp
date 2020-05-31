@@ -16,11 +16,19 @@ if (Hbok < 0){
 }
 
 A = Abok;
-B = Hbok;
+H = Hbok;
 
 }
 
-void GraniastoslupSzes::Orient_wektor(SWektor<double,3> &Wek)const {
+void GraniastoslupSzes::ustaw_pozycje(const SWektor<double,3> &Wektor) {
+Srodek = Wektor;
+}
+
+void GraniastoslupSzes::ustaw_orientacje(const MacierzOb &Macierz) {
+Orientacja = Macierz;
+}
+
+void GraniastoslupSzes::Orient_wektor(SWektor<double,3> &Wek)const  {
 
 Wek = Orientacja * Wek;
 }
@@ -30,7 +38,7 @@ void GraniastoslupSzes::Wspolrzedne(SWektor<double,3>* wsp)const {
 
 SWektor<double,3> przesX(H/2,0,0);
 SWektor<double,3> przesY(0,A,0);
-SWektor<double,3> przesY2(0,A/2,C);
+SWektor<double,3> przesY2(0,A/2,0);
 SWektor<double,3> przesZ(0,0,A*sqrt(3)/2);
 
 (*this).Orient_wektor(przesX);
@@ -54,12 +62,15 @@ wsp[11] = Srodek - przesX + przesY2 - przesZ;
 }
 
 
-unsigned int GraniastoslupSzes::Rysuj(std::shared_ptr<drawNS::Draw3DAPI> api) {
+void GraniastoslupSzes::Rysuj() {
 
 SWektor<double,3> tab[12];
 (*this).Wspolrzedne(tab);
 
-unsigned int tmp = api ->draw_polyhedron(vector<vector<Point3D> > {{
+if (ID != -1)
+api->erase_shape(ID);
+
+ID = api ->draw_polyhedron(vector<vector<Point3D> > {{
     drawNS::Point3D(tab[0][0],tab[0][1],tab[0][2]),drawNS::Point3D(tab[1][0],tab[1][1],tab[1][2]),drawNS::Point3D(tab[2][0],tab[2][1],tab[2][2]),
     drawNS::Point3D(tab[3][0],tab[3][1],tab[3][2]),drawNS::Point3D(tab[4][0],tab[4][1],tab[4][2]),drawNS::Point3D(tab[5][0],tab[5][1],tab[5][2])
     },{
@@ -68,7 +79,7 @@ unsigned int tmp = api ->draw_polyhedron(vector<vector<Point3D> > {{
     }
     }, "red");
 
-return tmp;
+
 
 
 
