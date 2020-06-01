@@ -95,24 +95,23 @@ void Dron::Plyn(double odleglosc, double stopnie){
 
 if (odleglosc > 0){
     for(int i=0; i <= odleglosc; i++){
-    Prawa.Obracaj();
-    Lewa.Obracaj();
-
 
     (*this).Przesun(1,stopnie);
     Rysuj();
     usleep(10000);
+    /*Prawa.Obracaj();
+    Lewa.Obracaj();*/
     }
 }
 
 if (odleglosc < 0){
     for(int i=0; i >= odleglosc; i--){
-    Prawa.Obracaj();
-    Lewa.Obracaj();
     (*this).Przesun(-1,stopnie);
 
     Rysuj();
     usleep(10000);
+   /* Prawa.Obracaj();
+    Lewa.Obracaj();*/
 }}
 
 }

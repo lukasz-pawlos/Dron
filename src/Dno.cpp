@@ -1,10 +1,19 @@
 #include "Dno.hh"
 
-Dno:Dno(double wymiar) {
-SWektor<double,3> W(0,0,(-1*wymiar));
-Srodek = W;
+Dno::Dno(double wymiar) {
 bok = wymiar;
-string K = "yellow";
-kolor = K;
+
+}
+
+
+void Dno::Rysuj(){
+  int ID=0;
+    ID = api ->draw_surface(vector<vector<Point3D> > {{
+        drawNS::Point3D(-100,-100,-100),drawNS::Point3D(-100,0,-100),drawNS::Point3D(-100,100,-100)
+    },{
+    drawNS::Point3D(0,-100,-100),drawNS::Point3D(0,0,-100),drawNS::Point3D(0,100,-100)
+    },{
+    drawNS::Point3D(100,-100,-100),drawNS::Point3D(100,0,-100),drawNS::Point3D(100,100,-100)
+    }}, "yellow");
 
 }

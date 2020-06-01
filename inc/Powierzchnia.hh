@@ -16,26 +16,18 @@ using std::endl;
 class Powierzchnia {
 protected:
 
-  Powierzchnia();
-
-  double bok;
-  double updown;
-  SWektor<double,3> Srodek;
-      int ID = -1;
-      std::shared_ptr<drawNS::Draw3DAPI> api;
-
- void Wspolrzedne(SWektor<double,3> *wsp) const;
+    int ID = -1;
+    std::shared_ptr<drawNS::Draw3DAPI> api;
 
 public:
 
-  Powierzchnia(double glebokosc, double wymiar);
 
-void Rysuj() ;
+virtual void Rysuj() ;
 
 void ustaw_api(std::shared_ptr<drawNS::Draw3DAPI> API) {api =API;};
 
-std::shared_ptr<drawNS::Draw3DAPI> daj_api() const {return api;};
 
+std::shared_ptr<drawNS::Draw3DAPI> daj_api() const {return api;};
 
 };
 

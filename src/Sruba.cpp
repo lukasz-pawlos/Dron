@@ -55,7 +55,7 @@ Orientacja = Orientacja * Obrot;
 void Sruba::Obracaj() {
 MacierzOb Krec;
 Krec.OSX(6);
-Rotacja = Rotacja *Krec;
+Rotacja =Rotacja * Krec;
 
 }
 
