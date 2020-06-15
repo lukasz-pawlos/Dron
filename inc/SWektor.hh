@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include <cmath>
 
 
 
@@ -10,6 +11,7 @@ template <typename STyp, int SWymiar>
 class SWektor {
 protected:
     STyp  _Wsp[SWymiar];
+
   public:
     SWektor(STyp x,STyp y, STyp z) {
      _Wsp[0]=x, _Wsp[1]=y, _Wsp[2]=z;}
@@ -17,8 +19,16 @@ protected:
 
     SWektor();
 
+
     STyp  operator [] (unsigned int Ind) const { return _Wsp[Ind]; }
     STyp &operator [] (unsigned int Ind)       { return _Wsp[Ind]; }
+
+    STyp dlugosc() const {
+    STyp dlug = 0;
+    for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) dlug+=((*this)[Ind]) * ((*this)[Ind]);
+    dlug = sqrt(dlug);
+    return dlug;}
+
 
     SWektor<STyp,SWymiar> operator - (const SWektor<STyp,SWymiar> &Odjemnik) const;
     SWektor<STyp,SWymiar> operator + (const SWektor<STyp,SWymiar> &Wek) const;

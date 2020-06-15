@@ -11,6 +11,7 @@ class InterfejsDrona {
 protected:
 
 InterfejsDrona(){};
+double promien;
 
 public:
 
@@ -18,6 +19,11 @@ virtual void Obrot(double stopnie) = 0;
 virtual void Przesun(double odleglosc,double stopnie) = 0;
 virtual void Plyn(double odleglosc,double stopnie) = 0;
 virtual void ObrotA(double stopnie) = 0;
+virtual void Przesun(double X, double Y, double Z) = 0;
+
+double WezPromien()const { return promien;}
+
+
 };
 
 

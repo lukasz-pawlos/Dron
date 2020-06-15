@@ -1,5 +1,7 @@
 #include "Dron.hh"
 
+int Dron::liczba_dronow(0);
+
 Dron::Dron(double bA, double bB, double bC) {
 
 if(A < 0){
@@ -30,6 +32,8 @@ Lewa.ustaw_pozycje(Lewy);
 SWektor<double,3> Prawy((-1*A),(B/2),0);
 PozycjaPrawa = Prawy + Srodek;
 Prawa.ustaw_pozycje(Prawy);
+
+promien = sqrt(pow(A,2) + pow(B,2) + pow(C,2));
 
 }
 
@@ -64,6 +68,13 @@ Lewa.Przesun(odleglosc,stopnie);
 Prawa.Przesun(odleglosc,stopnie);
 }
 
+void Dron::Przesun(double X, double Y, double Z) {
+SWektor<double,3> newSR(X,Y,Z);
+Srodek = newSR;
+Lewa.ustaw_pozycje(newSR + PozycjaLewa);
+Prawa.ustaw_pozycje(newSR + PozycjaPrawa);
+}
+
 
 void Dron::ObrotA(double kat) {
 while (kat){
@@ -92,11 +103,22 @@ while (kat){
 
 void Dron::Plyn(double odleglosc, double stopnie){
 
+int kolizja = 0;
 
 if (odleglosc > 0){
     for(int i=0; i <= odleglosc; i++){
 
-    (*this).Przesun(1,stopnie);
+    Przesun(1,stopnie);
+
+    for(auto elem : kolekcja_przeszkod){
+        if( elem->Kolizja(shared_from_this())){
+        cout << "Bedzie kolizja" <<endl;
+        Przesun(-1,stopnie);
+        kolizja = 1;
+        break;
+        }
+    }
+
     Rysuj();
     usleep(10000);
     /*Prawa.Obracaj();
@@ -106,16 +128,40 @@ if (odleglosc > 0){
 
 if (odleglosc < 0){
     for(int i=0; i >= odleglosc; i--){
-    (*this).Przesun(-1,stopnie);
+    Przesun(-1,stopnie);
 
+        for(auto elem : kolekcja_przeszkod){
+        if( elem->Kolizja(shared_from_this())){
+        cout << "Bedzie kolizja" <<endl;
+        Przesun(1,stopnie);
+        kolizja = 1;
+        break;
+        }
+}
     Rysuj();
     usleep(10000);
    /* Prawa.Obracaj();
     Lewa.Obracaj();*/
-}}
-
 }
 
+}
+}
+
+bool Dron::Kolizja(std::shared_ptr<InterfejsDrona> Inter) const {
+
+if(Inter != shared_from_this()){
+    std::shared_ptr<Dron> plywak1 = std::static_pointer_cast<Dron>(Inter);
+    double promienie = this->WezPromien() + plywak1->WezPromien();
+    SWektor<double,3> odleglosc = this->daj_srodek() - plywak1->daj_srodek();
+    //cout << odleglosc.dlugosc()<<endl;
+    return (promienie > odleglosc.dlugosc());
+}
+return 0;
+}
+
+void Dron::ustaw_kolekcje_przeszkod( std::vector<std::shared_ptr<Przeszkoda> > kolekcja) {
+kolekcja_przeszkod = kolekcja;
+}
 
 
 

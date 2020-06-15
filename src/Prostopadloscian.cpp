@@ -4,17 +4,17 @@ Prostopadloscian::Prostopadloscian() {}
 
 Prostopadloscian::Prostopadloscian(double bok_A, double bok_B, double bok_C){
 
-if (A < 0){
+if (bok_A < 0){
     cout << "Bok nie moze byc liczba ujemna" << endl;
     exit(1);
 }
 
-if (B < 0){
+if (bok_B < 0){
     cout << "Bok nie moze byc liczba ujemna" << endl;
     exit(1);
 }
 
-if (C < 0){
+if (bok_C < 0){
     cout << "Bok nie moze byc liczba ujemna" << endl;
     exit(1);
 }
@@ -61,6 +61,12 @@ Srodek = Wektor;
 
 void Prostopadloscian::ustaw_orientacje(const MacierzOb &Macierz) {
 Orientacja = Macierz;
+}
+
+void Prostopadloscian::ustaw_srodek(double X, double Y, double Z){
+Srodek[0] = X;
+Srodek[1] = Y;
+Srodek[2] = Z;
 }
 
 

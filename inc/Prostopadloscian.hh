@@ -19,8 +19,9 @@ public:
     Prostopadloscian(double bok_A, double bok_B, double bok_C);
 
     void Rysuj() override;
-    void ustaw_pozycje(const SWektor<double,3> &Wektor) override;
-    void ustaw_orientacje(const MacierzOb &Macierz) override;
+    void ustaw_pozycje(const SWektor<double,3> &Wektor);
+    void ustaw_orientacje(const MacierzOb &Macierz);
+    void ustaw_srodek(double X, double Y, double Z);
 
     void Orient_wektor(SWektor<double,3> &Wek) const;
 

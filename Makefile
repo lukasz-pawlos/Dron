@@ -1,13 +1,13 @@
 CPPFLAGS= -c -g -Wall -pedantic -std=c++17 -iquote inc
 OBJ=./obj
 
-__start__: ${OBJ} ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o  ${OBJ}/Dno.o ${OBJ}/Tafla.o
-	g++ -o example.out ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o  ${OBJ}/Dno.o ${OBJ}/Tafla.o -lpthread
+__start__: ${OBJ} ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/MacierzOb.o ${OBJ}/Bryla.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o  ${OBJ}/Dno.o ${OBJ}/Tafla.o ${OBJ}/PrzeszkodaProsto.o
+	g++ -o example.out ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/MacierzOb.o ${OBJ}/Bryla.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupSzes.o ${OBJ}/Sruba.o  ${OBJ}/Dno.o ${OBJ}/Tafla.o ${OBJ}/PrzeszkodaProsto.o -lpthread
 
 ${OBJ}:
 	mkdir ${OBJ}
 
-${OBJ}/example.o: src/example.cpp inc/Dr3D_gnuplot_api.hh inc/SWektor.hh inc/Macierz.hh inc/MacierzOb.hh inc/Prostopadloscian.hh inc/Dron.hh inc/GraniastoslupSzes.hh inc/Sruba.hh
+${OBJ}/example.o: src/example.cpp inc/Dr3D_gnuplot_api.hh inc/SWektor.hh inc/Macierz.hh inc/MacierzOb.hh inc/Bryla.hh inc/Prostopadloscian.hh inc/Dron.hh inc/GraniastoslupSzes.hh inc/Sruba.hh inc/Przeszkoda.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/example.o src/example.cpp
 
 ${OBJ}/Dr3D_gnuplot_api.o: src/Dr3D_gnuplot_api.cpp inc/Dr3D_gnuplot_api.hh
@@ -19,6 +19,10 @@ inc/Dr3D_gnuplot_api.hh: inc/Draw3D_api_interface.hh
 
 ${OBJ}/MacierzOb.o:  inc/Macierz.hh inc/MacierzOb.hh src/MacierzOb.cpp
 	g++ ${CPPFLAGS} -o ${OBJ}/MacierzOb.o src/MacierzOb.cpp
+
+${OBJ}/Bryla.o: src/Bryla.cpp inc/Bryla.hh
+	g++ ${CPPFLAGS} -o ${OBJ}/Bryla.o src/Bryla.cpp
+
 
 ${OBJ}/Prostopadloscian.o: src/Prostopadloscian.cpp inc/Prostopadloscian.hh inc/Bryla.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Prostopadloscian.o src/Prostopadloscian.cpp
@@ -46,6 +50,10 @@ ${OBJ}/Dno.o: src/Dno.cpp inc/Dno.hh  inc/Powierzchnia.hh
 
 ${OBJ}/Tafla.o: src/Tafla.cpp inc/Tafla.hh  inc/Powierzchnia.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Tafla.o src/Tafla.cpp
+
+${OBJ}/PrzeszkodaProsto.o: src/PrzeszkodaProsto.cpp inc/PrzeszkodaProsto.hh  inc/Prostopadloscian.hh inc/Przeszkoda.hh
+	g++ ${CPPFLAGS} -o ${OBJ}/PrzeszkodaProsto.o src/PrzeszkodaProsto.cpp
+
 
 
 clear:

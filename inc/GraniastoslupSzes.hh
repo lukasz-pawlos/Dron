@@ -20,8 +20,8 @@ void Orient_wektor(SWektor<double,3> &Wek) const override;
 
 public:
 
-    void ustaw_pozycje(const SWektor<double,3> &Wektor) override;
-    void ustaw_orientacje(const MacierzOb &Macierz) override;
+    void ustaw_pozycje(const SWektor<double,3> &Wektor);
+    void ustaw_orientacje(const MacierzOb &Macierz);
 
 GraniastoslupSzes(double Abok, double Hbok);
 

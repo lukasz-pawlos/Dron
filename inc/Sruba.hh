@@ -22,9 +22,9 @@ Sruba(double Abok,double Hbok);
 
 void Ustaw (double Abok,double Hbok);
 
-void ustaw_pozycje(const SWektor<double,3> &Wektor) override;
+void ustaw_pozycje(const SWektor<double,3> &Wektor);
 
-void ustaw_orientacje(const MacierzOb &Macierz) override;
+void ustaw_orientacje(const MacierzOb &Macierz);
 
 void Przesun(double odleglosc, double stopnie);
 
